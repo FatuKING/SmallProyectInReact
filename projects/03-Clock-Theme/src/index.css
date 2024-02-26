@@ -1,0 +1,90 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  height: 100vh;
+}
+
+.dark {
+  background-color: #242424;
+  color: #ffffff;
+}
+
+.light {
+  background-color: #ffffff;
+  color: #1a1a1a;
+}
+
+.clock {
+  height: 300px;
+  width: 300px;
+  border-radius: 50%;
+  background-image: url(../public/reloj-number.png);
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+}
+
+.clock .needle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 75px;
+  width: 3px;
+  background-color: black;
+  transition: all 0.5s ease-in linear;
+}
+
+.clock .needle:nth-child(1) {
+  transform: translate(-50%, -100%) rotate(0deg);
+}
+
+.clock .needle:nth-child(2) {
+  transform: translate(-50%, -100%) rotate(0deg);
+  height: 90px;
+}
+
+.clock .needle:nth-child(3) {
+  transform: translate(-50%, -100%) rotate(0deg);
+  height: 90px;
+  background-color: #e74c3c;
+}
+
+.center-point {
+  background-color: #e74c3c;
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+}
+
+.center-point::after {
+  content: '';
+  background-color: white;
+  width: 4px;
+  height: 4px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+}
