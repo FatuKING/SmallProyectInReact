@@ -10,6 +10,9 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --bg-color: #242424;
+  --color: #ffffff;
 }
 
 body{
@@ -17,18 +20,36 @@ body{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 15px;
   height: 100vh;
 }
 
 .dark {
-  background-color: #242424;
-  color: #ffffff;
+  background-color: var(--bg-color);
+  color: var(--color);
 }
 
 .light {
+  background-color: var(--color);
+  color: var(--bg-color);
+}
+
+.dark button{
+  cursor: pointer;
+  border: 0;
+  border-radius: 4px;
+  padding: 8px 12px;
   background-color: #ffffff;
-  color: #1a1a1a;
+  color: black;
+}
+
+.light button{
+  cursor: pointer;
+  border: 0;
+  border-radius: 4px;
+  padding: 8px 12px;
+  background-color: var(--bg-color);
+  color: var(--color);
 }
 
 .clock {
@@ -87,4 +108,12 @@ body{
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 50%;
+}
+
+.now {
+  font-size: 50px;
+}
+
+.date {
+  font-size: 16px;
 }

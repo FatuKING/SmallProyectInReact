@@ -1,12 +1,17 @@
 import { useState, useEffect } from 'react'
-import { hours, minutes, seconds, dates, months, days } from './logic'
+import { timeNow, date } from './logic'
 
 export function Clock () {
-  const [hour, setHour] = useState(hours)
+  const [now, setNow] = useState(timeNow())
 
-  const time = `${hours} : ${minutes} : ${seconds}`
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setNow(timeNow())
+    }, 1000)
 
-  const date = `${days} : ${months} : ${dates}`
+    return () => clearInterval(intervalId)
+  }, [])
+
   return (
     <>
       <div className='clock'>
@@ -15,8 +20,8 @@ export function Clock () {
         <div className='needle second' />
         <div className='center-point' />
       </div>
-      <div>{time} </div>
-      <span>{date}</span>
+      <div className='now'>{now}</div>
+      <span className='date'>{date}</span>
     </>
   )
 }
