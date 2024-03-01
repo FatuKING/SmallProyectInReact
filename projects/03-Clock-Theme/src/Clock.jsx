@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react'
-import { timeNow, date } from './logic'
+import { hourRotation, minuteRotation, secondRotation } from './logic'
 
 export function Clock () {
-  const [now, setNow] = useState(timeNow())
+  const [hour, setHour] = useState(hourRotation)
+  const [minute, setMinute] = useState(minuteRotation)
+  const [second, setSecond] = useState(secondRotation)
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setNow(timeNow())
+      setSecond(secondRotation)
     }, 1000)
 
     return () => clearInterval(intervalId)
@@ -15,13 +17,11 @@ export function Clock () {
   return (
     <>
       <div className='clock'>
-        <div className='needle hour' />
-        <div className='needle minute' />
-        <div className='needle second' />
+        <div className='needle' style={{ transform: `translate(-50%, -100%) ${hour}` }} />
+        <div className='needle' style={{ transform: `translate(-50%, -100%) ${minute}` }} />
+        <div className='needle' style={{ transform: `translate(-50%, -100%) ${second}` }} />
         <div className='center-point' />
       </div>
-      <div className='now'>{now}</div>
-      <span className='date'>{date}</span>
     </>
   )
 }
