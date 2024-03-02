@@ -7,9 +7,18 @@ export function Clock () {
   const [second, setSecond] = useState(secondRotation)
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      setSecond(secondRotation)
-    }, 1000)
+    const updateClock = () => {
+      const now = new Date()
+      const hours = now.getHours() % 12
+      const minutes = now.getMinutes()
+      const seconds = now.getSeconds()
+
+      setHour(`rotate(${(hours + minutes / 60) * 30}deg)`)
+      setMinute(`rotate(${minutes * 6}deg)`)
+      setSecond(`rotate(${seconds * 6}deg)`)
+    }
+
+    const intervalId = setInterval(updateClock, 1000)
 
     return () => clearInterval(intervalId)
   }, [])
