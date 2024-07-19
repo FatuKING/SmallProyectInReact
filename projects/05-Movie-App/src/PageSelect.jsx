@@ -11,22 +11,20 @@ import {
 export function PageSelect () {
   return (
     <>
-      <div className='p-2 bg-sky-900'>
+      <div className='p-4 bg-sky-900'>
         <Pagination>
           <PaginationContent>
             <PaginationItem>
               <PaginationPrevious href='#' />
             </PaginationItem>
             <PaginationItem>
-              <PaginationLink href='#' isActive>1</PaginationLink>
+              <PaginationLink className='text-lg' href='#' isActive>1</PaginationLink>
             </PaginationItem>
             <PaginationItem>
-              <PaginationLink href='#'>
-                2
-              </PaginationLink>
+              <PaginationLink className='text-lg' href='#'>2</PaginationLink>
             </PaginationItem>
             <PaginationItem>
-              <PaginationLink href='#'>3</PaginationLink>
+              <PaginationLink className='text-lg' href='#'>3</PaginationLink>
             </PaginationItem>
             <PaginationItem>
               <PaginationEllipsis />
