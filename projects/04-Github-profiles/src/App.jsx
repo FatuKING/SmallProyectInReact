@@ -1,37 +1,28 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { Perfile } from './Perfile'
 
 function App () {
   const [userName, setUserName] = useState('')
   const [showPerfile, setShowPerfile] = useState(false)
+  const search = useRef()
 
-  useEffect(() => {
-    const formSubmitHandler = (e) => {
+  const formSubmitHandler = (e) => {
       e.preventDefault()
 
-      const name = search.value
+      const name = search.current.value
 
       if (name) {
         setUserName(name)
         setShowPerfile(true)
-        search.value = ''
+        search.current.value = ''
       }
     }
 
-    const search = document.getElementById('search')
-    const form = document.getElementById('form')
-
-    form.addEventListener('submit', formSubmitHandler)
-
-    return () => {
-      form.removeEventListener('submit', formSubmitHandler)
-    }
-  }, [])
 
   return (
     <>
-      <form id='form' className='flex justify-center w-full'>
-        <input id='search' className='w-1/2 p-4 bg-violet-900 rounded-lg text-lg focus:outline-none' type='text' placeholder='Search a Github User' />
+      <form id='form' onSubmit={formSubmitHandler} className='flex justify-center w-full'>
+        <input ref={search} className='w-1/2 p-4 bg-violet-900 rounded-lg text-lg focus:outline-none' type='text' placeholder='Search a Github User' />
       </form>
 
       {

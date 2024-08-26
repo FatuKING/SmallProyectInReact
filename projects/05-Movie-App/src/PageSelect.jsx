@@ -11,7 +11,7 @@ import {
 export function PageSelect () {
   return (
     <>
-      <div className='p-4 bg-sky-900'>
+      <div className='p-4 bg-gray-800'>
         <Pagination>
           <PaginationContent>
             <PaginationItem>

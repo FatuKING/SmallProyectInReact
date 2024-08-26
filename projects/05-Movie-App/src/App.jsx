@@ -4,12 +4,12 @@ import { PageSelect } from './PageSelect'
 import { useMovies } from './hook/useMovies'
 
 function App () {
-  const { data, search, handleSumit } = useMovies()
+  const { data } = useMovies()
 
   return (
     <>
-      <Form search={search} handleSumit={handleSumit} />
-      <main className='flex flex-col items-center justify-center bg-sky-900'>
+      <Form />
+      <main className='flex flex-col items-center justify-center bg-gray-800'>
         <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-7 pt-8 pb-8 w-4/5'>
           {
             data.results.map((movie, index) => {

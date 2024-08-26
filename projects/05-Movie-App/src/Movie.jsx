@@ -1,5 +1,6 @@
 export function Movie ({ img, title, point, description }) {
   const pathImg = `https://image.tmdb.org/t/p/w1280${img}`
+  const noImage = 'https://laverdadonline.com/wp-content/uploads/2023/09/no-image.png'
 
   const colorPoint = (point) => {
     if (point <= 4) {
@@ -13,12 +14,12 @@ export function Movie ({ img, title, point, description }) {
 
   return (
     <>
-      <section className='group flex flex-col relative shadow-2xl'>
-        <figure className=''>
-          <img className='object-cover' src={pathImg} alt={title} />
+      <section className='group flex flex-col relative shadow-md shadow-gray-900'>
+        <figure className='rounded'>
+          <img className='rounded-t' src={img ? pathImg : noImage} alt={title} />
         </figure>
 
-        <article className='flex justify-between items-center p-4 bg-sky-950 h-20'>
+        <article className='flex justify-between items-center p-4 bg-gray-800 h-20'>
           <h1 className='text-lg font-semibold uppercase font-poppins w-4/5 text-white'>{title}</h1>
 
           <span className={`text-xl ${colorPoint(point)}`}>{point}</span>

@@ -1,36 +1,36 @@
-import { useEffect, useState, useRef } from 'react'
+import { SearchContext } from '@/context/search'
+import { useEffect, useState, useRef, useContext } from 'react'
 
 export function useMovies () {
   const [data, setData] = useState({ results: [] })
-  const [query, setQuery] = useState()
-  const search = useRef()
+  const { search, setSearch } = useContext(SearchContext)
+  console.log(search)
+  const searchInput = useRef()
 
   const APIKEY = 'd44e9140617c8259e6b74ae4ddd42235'
 
   const APIURL = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${APIKEY}&page=1&language=es`
 
-  const APISEARCH = `https://api.themoviedb.org/3/search/movie?sort_by=popularity.desc&api_key=${APIKEY}&language=es&query=${query}`
+  const APISEARCH = `https://api.themoviedb.org/3/search/movie?sort_by=popularity.desc&api_key=${APIKEY}&language=es&query=${search}`
 
   const handleQuery = (newQuery) => {
-    setQuery(newQuery)
+    setSearch(newQuery)
   }
 
   const handleSumit = (e) => {
     e.preventDefault()
 
-    const searchMovie = search.current.value
+    const searchMovie = searchInput.current.value
 
-    setQuery(searchMovie)
+    setSearch(searchMovie)
 
-    search.current.value = ''
-
-    return searchMovie
+    searchInput.current.value = ''
   }
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        if (query === undefined || query === '') {
+        if (search === undefined || search === '') {
           const response = await fetch(APIURL)
           const result = await response.json()
           setData(result)
@@ -45,7 +45,7 @@ export function useMovies () {
     }
 
     fetchData()
-  }, [query])
+  }, [search])
 
-  return { data, search, handleQuery, handleSumit }
+  return { data, searchInput, handleQuery, handleSumit }
 }
